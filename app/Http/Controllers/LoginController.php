@@ -9,8 +9,4 @@ class LoginController extends Controller
     public function telaLogin(){
         return view('login.telaLogin');
     }
-
-    public function fazerLogin(){
-
-    }
 }
