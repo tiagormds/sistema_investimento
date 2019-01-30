@@ -15,7 +15,7 @@ class DashboardController extends Controller
 
     public function auth(Request $request){
 
-        User::all();
+        $user = User::all();
 
         $credenciais = [
             'email' => $request->get('username'),
@@ -23,9 +23,23 @@ class DashboardController extends Controller
         ];
 
         try{
-            Auth::attempt($credenciais, false);
+            if(env('PASSWORD_HASH')){
+                Auth::attempt($credenciais, false);
+
+            }else{
+                User::where(['email' => $request->get('username')])->first();
+
+                if(!$user)
+                    throw new \Exception("E-mail informado é inválido");
+
+                if($user->password == $request->get('password'));
+                    throw new \Exception("A senha informada é inválida");
+
+                    Auth::login($user);
+            }
 
             return redirect()->route('user.dashboard');
+
         }catch (\Exception $e){
             return $e->getMessage();
         }
