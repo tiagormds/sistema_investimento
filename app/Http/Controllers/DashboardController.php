@@ -11,7 +11,6 @@ class DashboardController extends Controller
 
     public function index(){
         return "Estamos na index";
-
     }
 
     public function auth(Request $request){
@@ -19,7 +18,7 @@ class DashboardController extends Controller
         User::all();
 
         $credenciais = [
-            'username' => $request->get('username'),
+            'email' => $request->get('username'),
             'password' => $request->get('password')
         ];
 
