@@ -10,12 +10,12 @@ class DashboardController extends Controller
 {
 
     public function index(){
-        return "Estamos na index";
+        return view('user.dashboard');
     }
 
     public function auth(Request $request){
 
-        $user = User::all();
+//        User::all();
 
         $credenciais = [
             'email' => $request->get('username'),
@@ -27,15 +27,18 @@ class DashboardController extends Controller
                 Auth::attempt($credenciais, false);
 
             }else{
-                User::where(['email' => $request->get('username')])->first();
+                //Buscar o e-mail
+                $user = User::where(['email' => $request->get('username')])->first();
 
+                //Se não encontrou o e-mail
                 if(!$user)
                     throw new \Exception("E-mail informado é inválido");
 
-                if($user->password == $request->get('password'));
+                //Se a senha for diferente do que a informada.
+                if($user->password != $request->get('password'))
                     throw new \Exception("A senha informada é inválida");
 
-                    Auth::login($user);
+                Auth::login($user);
             }
 
             return redirect()->route('user.dashboard');
