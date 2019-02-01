@@ -25,7 +25,6 @@ class DashboardController extends Controller
         try{
             if(env('PASSWORD_HASH')){
                 Auth::attempt($credenciais, false);
-
             }else{
                 //Buscar o e-mail
                 $user = User::where(['email' => $request->get('username')])->first();
