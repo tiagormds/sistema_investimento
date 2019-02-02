@@ -12,8 +12,8 @@
 </head>
 <body>
 
+    @include('templates.menu-lateral')
     @yield('conteudo-view')
-
     @yield('js-view')
 
 </body>

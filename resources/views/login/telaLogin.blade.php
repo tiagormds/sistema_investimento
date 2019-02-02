@@ -1,9 +1,7 @@
-
-
-<div class="background">
-
-</div>
-
+@extends('templates.master')
+@section('conteudo-view')
+{{--Div do Papel de Parede    --}}
+<div class="background"></div>
 
 
 <section class="login" id="conteudo-view">
@@ -28,4 +26,5 @@
 
     {!! Form::close() !!}
 </section>
+@endsection
 
