@@ -6,7 +6,7 @@
 
 @section('conteudo-view')
 
-    Dashboard
+    {{--Dashboard--}}
 
 @endsection
 
